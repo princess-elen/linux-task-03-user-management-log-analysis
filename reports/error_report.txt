@@ -1,0 +1,3 @@
+# Generated error report
+
+This is a placeholder. Run `scripts/03_analyze_logs.sh` as forensic01, then copy `/home/forensic01/logs/error_report.txt` here.

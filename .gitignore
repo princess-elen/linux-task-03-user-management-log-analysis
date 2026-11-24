@@ -1,0 +1,9 @@
+*.swp
+*.tmp
+.DS_Store
+Thumbs.db
+*.log
+!logs/.gitkeep
+!evidence/terminal-outputs/.gitkeep
+!evidence/verification/.gitkeep
+!screenshots/.gitkeep

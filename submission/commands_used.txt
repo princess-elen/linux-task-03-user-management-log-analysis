@@ -1,0 +1,42 @@
+# Linux Task 03 — commands used
+# Replace/edit this template so it records the exact commands YOU actually ran.
+# Do not record passwords. Add dates or notes where useful.
+
+# Preflight
+./scripts/00_preflight.sh
+
+# Create forensic01 (run as an administrator)
+sudo ./scripts/01_setup_forensic_user.sh
+
+# Switch user
+su - forensic01
+
+# Create log file (run as forensic01)
+./scripts/02_create_logs.sh
+
+# Log filtering and analysis (run as forensic01)
+cd ~/logs
+grep "ERROR" sys_events.log
+grep -E "root|user01" sys_events.log
+grep "ERROR" sys_events.log | less
+grep "ERROR" sys_events.log > error_report.txt
+head -n 5 sys_events.log
+tail -n 5 sys_events.log
+cat sys_events.log
+
+# Permissions and ownership (run as forensic01)
+touch ~/logs/confidential.txt
+chmod 600 ~/logs/confidential.txt
+ls -l ~/logs/confidential.txt
+sudo chown root:root ~/logs/confidential.txt
+ls -l ~/logs/confidential.txt
+cat ~/logs/confidential.txt
+echo "test entry" >> ~/logs/confidential.txt
+
+# Temporary user management (run as administrator)
+sudo ./scripts/05_manage_guest_users.sh
+id guest1
+getent passwd guest2
+
+# Evidence collection
+./scripts/06_collect_evidence.sh
